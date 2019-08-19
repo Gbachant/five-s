@@ -11,27 +11,31 @@ class App extends Component {
     todos: [
       {
         id: 1,
-        title: 'Take out the trash',
-        completed: false
+        title: 'Computer',
+        completed: false,
+        location: ''
       },
       {
         id: 2,
-        title: 'Do dishes',
-        completed: false
+        title: 'Label Printer',
+        completed: false,
+        location: ''
       },
       {
         id: 3,
-        title: 'Do meeting',
-        completed: false
+        title: 'UPS Envelopes',
+        completed: false,
+        location: ''
       },
     ]
   }
 
   // Toggle Complete
-  markComplete = (id) => {
+  updateLocation = (id, newLocation) => {
     this.setState({ todos: this.state.todos.map(todo => {
       if(todo.id === id) {
-        todo.completed = !todo.completed
+        todo.location = newLocation
+        console.log(todo.location)
       }
       return todo;
     }) });
@@ -59,7 +63,7 @@ class App extends Component {
           <Header />
           <AddTodo addTodo={this.addTodo}/>
           <Todos todos={this.state.todos}
-          markComplete={this.markComplete}
+          updateLocation={this.updateLocation}
           delTodo={this.delTodo}/>
         </div>
       </div>
