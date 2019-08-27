@@ -17,12 +17,26 @@ export class TodoItem extends Component {
     return (
       <div style={this.getStyle()}>
         <p>
-          {title}
+          {title + "  "}
           <button onClick={this.props.updateLocation.bind(this, id, 'Present')} className="btn btn-success">Present</button>
           <button onClick={this.props.updateLocation.bind(this, id, 'Out of Place')} className="btn btn-warning">Out of Place</button>
           <button onClick={this.props.updateLocation.bind(this, id, 'Absent')}className="btn btn-danger">Absent</button>
           <button onClick={this.props.delTodo.bind(this, id)}style={btnStyle}>x</button>
         </p>
+        <div>
+          <div>
+            <button onClick={this.props.addQuantity.bind(this, id, '1/5')} className="btn btn-info">1/5</button>
+            <button onClick={this.props.addQuantity.bind(this, id, '2/5')} className="btn btn-info">2/5</button>
+            <button className="btn btn-info">3/5</button>
+            <button className="btn btn-info">4/5</button>
+            <button className="btn btn-info">5/5</button>
+            <button className="btn btn-info">Overstocked</button>
+          </div>
+          <div>
+            <button className="btn btn-info">Stocked</button>
+            <button className="btn btn-info">Empty</button>
+          </div>
+        </div>
       </div>
     )
   }
@@ -33,6 +47,7 @@ TodoItem.propTypes = {
   todo: PropTypes.object.isRequired,
   updateLocation: PropTypes.func.isRequired,
   delTodo: PropTypes.func.isRequired,
+  addQuantity: PropTypes.func.isRequired
 }
 
 const btnStyle = {

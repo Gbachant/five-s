@@ -20,20 +20,19 @@ export class AddTodo extends Component {
           type="text"
           name="title"
           style={{flex: '10', padding: '5px'}}
-          placeholder="Add Todo..."
+          placeholder="Add Comment..."
           value={this.state.title}
           onChange={this.onChange}
         />
         <input
           type="submit"
           value="Submit"
-          className="btn"
+          className="btn btn-primary"
           style={{flex: '1'}}
         />
       </form>
     )
   }
 }
-
 
 export default AddTodo

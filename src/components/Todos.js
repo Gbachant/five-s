@@ -8,7 +8,8 @@ class Todos extends Component {
     return this.props.todos.map((todo) => (
       <TodoItem key={todo.id} todo={todo}
       delTodo={this.props.delTodo}
-      updateLocation={this.props.updateLocation} />
+      updateLocation={this.props.updateLocation}
+      addQuantity={this.props.addQuantity} />
     ));
   }
 }

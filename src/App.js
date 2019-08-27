@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Header from './components/layout/Header.js'
 import Todos from './components/Todos.js';
 import AddTodo from './components/AddTodo.js';
-
 import './App.css';
 
 class App extends Component {
@@ -12,30 +11,57 @@ class App extends Component {
       {
         id: 1,
         title: 'Computer',
+        objectType: 'Tool',
         completed: false,
-        location: ''
+        location: '',
+        quantity: '',
+        quantityType: 'N/A'
       },
       {
         id: 2,
         title: 'Label Printer',
+        objectType: 'Tool',
         completed: false,
-        location: ''
+        location: '',
+        quantity: '',
+        quantityType: 'Boolean'
       },
       {
         id: 3,
-        title: 'UPS Envelopes',
+        title: 'FLO Kit',
+        objectType: 'Tool',
         completed: false,
-        location: ''
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
       },
+      {
+        id: 4,
+        title: 'Calipers',
+        objectType: 'Tool',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 5,
+        title: 'Red Tape',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        // quantity: '',
+        quantityType: 'Integer'
+      }
     ]
   }
 
-  // Toggle Complete
+  // Update Item Location
   updateLocation = (id, newLocation) => {
     this.setState({ todos: this.state.todos.map(todo => {
       if(todo.id === id) {
         todo.location = newLocation
-        console.log(todo.location)
+        console.log(todo.title + ': ' + todo.location)
       }
       return todo;
     }) });
@@ -56,15 +82,27 @@ class App extends Component {
     this.setState({ todos: [...this.state.todos, newTodo] });
   }
 
+  // Update Item Quanityt
+  addQuantity = (id, newQuantity) => {
+    this.setState({ todos: this.state.todos.map(todo => {
+      if(todo.id === id) {
+        todo.quantity = newQuantity
+        console.log(todo.title + ': ' + todo.quantity)
+      }
+      return todo;
+    }) });
+  }
+
   render() {
     return (
       <div className="App">
         <div className="container">
           <Header />
-          <AddTodo addTodo={this.addTodo}/>
           <Todos todos={this.state.todos}
           updateLocation={this.updateLocation}
-          delTodo={this.delTodo}/>
+          delTodo={this.delTodo}
+          addQuantity={this.addQuantity}/>
+          <AddTodo addTodo={this.addTodo}/>
         </div>
       </div>
     );
