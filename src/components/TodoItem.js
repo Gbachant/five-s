@@ -12,30 +12,36 @@ export class TodoItem extends Component {
     }
   }
 
+  getQuantityTypeButton(props) {
+    if (this.props.todo.quantityType === 'Boolean') {
+      return <div className="boolean-quantity-buttons">
+        <button className="btn btn-info">Stocked</button>
+        <button className="btn btn-info">Empty</button>
+      </div>;
+
+    } if (this.props.todo.quantityType === 'Integer') {
+      return <div className="integer-quantity-buttons">
+        <button className="btn btn-info">1/5</button>
+        <button className="btn btn-info">2/5</button>
+        <button className="btn btn-info">3/5</button>
+        <button className="btn btn-info">4/5</button>
+        <button className="btn btn-info">5/5</button>
+        <button className="btn btn-info">Overstocked</button>
+      </div>;
+    }
+  }
+
   render() {
     const {id, title} = this.props.todo
     return (
       <div style={this.getStyle()}>
-        <p>
-          {title + "  "}
+        <div>
+          <p>{title + "  "}</p>
           <button onClick={this.props.updateLocation.bind(this, id, 'Present')} className="btn btn-success">Present</button>
           <button onClick={this.props.updateLocation.bind(this, id, 'Out of Place')} className="btn btn-warning">Out of Place</button>
           <button onClick={this.props.updateLocation.bind(this, id, 'Absent')}className="btn btn-danger">Absent</button>
           <button onClick={this.props.delTodo.bind(this, id)}style={btnStyle}>x</button>
-        </p>
-        <div>
-          <div>
-            <button onClick={this.props.addQuantity.bind(this, id, '1/5')} className="btn btn-info">1/5</button>
-            <button onClick={this.props.addQuantity.bind(this, id, '2/5')} className="btn btn-info">2/5</button>
-            <button className="btn btn-info">3/5</button>
-            <button className="btn btn-info">4/5</button>
-            <button className="btn btn-info">5/5</button>
-            <button className="btn btn-info">Overstocked</button>
-          </div>
-          <div>
-            <button className="btn btn-info">Stocked</button>
-            <button className="btn btn-info">Empty</button>
-          </div>
+          {this.getQuantityTypeButton(this)}
         </div>
       </div>
     )
@@ -61,3 +67,15 @@ const btnStyle = {
 }
 
 export default TodoItem
+// <div className="integer-quantity-buttons">
+//   <button onClick={this.props.addQuantity.bind(this, id, '1/5')} className="btn btn-info">1/5</button>
+//   <button onClick={this.props.addQuantity.bind(this, id, '2/5')} className="btn btn-info">2/5</button>
+//   <button onClick={this.props.addQuantity.bind(this, id, '3/5')} className="btn btn-info">3/5</button>
+//   <button onClick={this.props.addQuantity.bind(this, id, '4/5')} className="btn btn-info">4/5</button>
+//   <button onClick={this.props.addQuantity.bind(this, id, '5/5')} className="btn btn-info">5/5</button>
+//   <button onClick={this.props.addQuantity.bind(this, id, 'Overstocked')} className="btn btn-info">Overstocked</button>
+// </div>
+// <div className="boolean-quantity-buttons">
+//   <button onClick={this.props.addQuantity.bind(this, id, 'Stocked')} className="btn btn-info">Stocked</button>
+//   <button onClick={this.props.addQuantity.bind(this, id, 'Empty')} className="btn btn-info">Empty</button>
+// </div>;

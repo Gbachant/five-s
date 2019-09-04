@@ -50,7 +50,7 @@ class App extends Component {
         objectType: 'Product',
         completed: false,
         location: '',
-        // quantity: '',
+        quantity: '',
         quantityType: 'Integer'
       }
     ]
