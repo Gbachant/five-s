@@ -51,7 +51,7 @@ class App extends Component {
         completed: false,
         location: '',
         quantity: '',
-        quantityType: 'Integer'
+        quantityType: 'Boolean'
       }
     ]
   }

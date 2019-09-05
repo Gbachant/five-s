@@ -14,19 +14,35 @@ export class TodoItem extends Component {
 
   getQuantityTypeButton(props) {
     if (this.props.todo.quantityType === 'Boolean') {
-      return <div className="boolean-quantity-buttons">
-        <button className="btn btn-info">Stocked</button>
-        <button className="btn btn-info">Empty</button>
+      return <div className="boolean-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="Stocked" autoComplete="off"/> Stocked
+        </label>
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="Empty" autoComplete="off"/> Empty
+        </label>
       </div>;
 
     } if (this.props.todo.quantityType === 'Integer') {
-      return <div className="integer-quantity-buttons">
-        <button className="btn btn-info">1/5</button>
-        <button className="btn btn-info">2/5</button>
-        <button className="btn btn-info">3/5</button>
-        <button className="btn btn-info">4/5</button>
-        <button className="btn btn-info">5/5</button>
-        <button className="btn btn-info">Overstocked</button>
+      return <div className="integer-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="1/5" autoComplete="off"/> 0 - 20%
+        </label>
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="2/5" autoComplete="off"/> 20% - 40%
+        </label>
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="3/5" autoComplete="off"/> 40% - 60%
+        </label>
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="4/5" autoComplete="off"/> 60% - 80%
+        </label>
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="5/5" autoComplete="off"/> 80% - 100%
+        </label>
+        <label className="btn btn-info">
+          <input type="radio" name="options" id="overstocked" autoComplete="off"/> Overstocked
+        </label>
       </div>;
     }
   }
@@ -34,12 +50,18 @@ export class TodoItem extends Component {
   render() {
     const {id, title} = this.props.todo
     return (
-      <div style={this.getStyle()}>
+      <div style={this.getStyle()} className="location-buttons btn-group btn-group-toggle" data-toggle="buttons">
         <div>
           <p>{title + "  "}</p>
-          <button onClick={this.props.updateLocation.bind(this, id, 'Present')} className="btn btn-success">Present</button>
-          <button onClick={this.props.updateLocation.bind(this, id, 'Out of Place')} className="btn btn-warning">Out of Place</button>
-          <button onClick={this.props.updateLocation.bind(this, id, 'Absent')}className="btn btn-danger">Absent</button>
+          <label onClick={this.props.updateLocation.bind(this, id, 'Present')} className="btn btn-success">
+            <input type="radio" name="options" id="present" autoComplete="off"/> Present
+          </label>
+          <label onClick={this.props.updateLocation.bind(this, id, 'Out of Place')} className="btn btn-warning">
+            <input type="radio" name="options" id="out-of-place" autoComplete="off"/> Out of Place
+          </label>
+          <label onClick={this.props.updateLocation.bind(this, id, 'Absent')} className="btn btn-danger">
+            <input type="radio" name="options" id="absent" autoComplete="off"/> Absent
+          </label>
           <button onClick={this.props.delTodo.bind(this, id)}style={btnStyle}>x</button>
           {this.getQuantityTypeButton(this)}
         </div>
@@ -67,15 +89,3 @@ const btnStyle = {
 }
 
 export default TodoItem
-// <div className="integer-quantity-buttons">
-//   <button onClick={this.props.addQuantity.bind(this, id, '1/5')} className="btn btn-info">1/5</button>
-//   <button onClick={this.props.addQuantity.bind(this, id, '2/5')} className="btn btn-info">2/5</button>
-//   <button onClick={this.props.addQuantity.bind(this, id, '3/5')} className="btn btn-info">3/5</button>
-//   <button onClick={this.props.addQuantity.bind(this, id, '4/5')} className="btn btn-info">4/5</button>
-//   <button onClick={this.props.addQuantity.bind(this, id, '5/5')} className="btn btn-info">5/5</button>
-//   <button onClick={this.props.addQuantity.bind(this, id, 'Overstocked')} className="btn btn-info">Overstocked</button>
-// </div>
-// <div className="boolean-quantity-buttons">
-//   <button onClick={this.props.addQuantity.bind(this, id, 'Stocked')} className="btn btn-info">Stocked</button>
-//   <button onClick={this.props.addQuantity.bind(this, id, 'Empty')} className="btn btn-info">Empty</button>
-// </div>;
