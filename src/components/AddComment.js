@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 
-export class AddTodo extends Component {
+export class AddComment extends Component {
   state = {
     title: ''
   }
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addTodo(this.state.title);
+    this.props.addComment(this.state.title);
     this.setState({title: ''})
   }
 
@@ -35,4 +35,4 @@ export class AddTodo extends Component {
   }
 }
 
-export default AddTodo
+export default AddComment

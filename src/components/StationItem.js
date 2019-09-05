@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 
-export class TodoItem extends Component {
+export class StationItem extends Component {
   getStyle = () => {
     return {
       background: '#f4f4f4',
       padding: '10px',
       borderBottom: '1px #ccc dotted',
-      textDecoration: this.props.todo.completed ?
+      textDecoration: this.props.station.completed ?
       'line-through' : 'none'
     }
   }
 
   getQuantityTypeButton(props) {
-    if (this.props.todo.quantityType === 'Boolean') {
+    if (this.props.station.quantityType === 'Boolean') {
       return <div className="boolean-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
         <label className="btn btn-info">
           <input type="radio" name="options" id="Stocked" autoComplete="off"/> Stocked
@@ -23,7 +23,7 @@ export class TodoItem extends Component {
         </label>
       </div>;
 
-    } if (this.props.todo.quantityType === 'Integer') {
+    } if (this.props.station.quantityType === 'Integer') {
       return <div className="integer-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
         <label className="btn btn-info">
           <input type="radio" name="options" id="1/5" autoComplete="off"/> 0 - 20%
@@ -48,7 +48,7 @@ export class TodoItem extends Component {
   }
 
   render() {
-    const {id, title} = this.props.todo
+    const {id, title} = this.props.station
     return (
       <div style={this.getStyle()} className="location-buttons btn-group btn-group-toggle" data-toggle="buttons">
         <div>
@@ -62,7 +62,7 @@ export class TodoItem extends Component {
           <label onClick={this.props.updateLocation.bind(this, id, 'Absent')} className="btn btn-danger">
             <input type="radio" name="options" id="absent" autoComplete="off"/> Absent
           </label>
-          <button onClick={this.props.delTodo.bind(this, id)}style={btnStyle}>x</button>
+          <button onClick={this.props.delItem.bind(this, id)}style={btnStyle}>x</button>
           {this.getQuantityTypeButton(this)}
         </div>
       </div>
@@ -71,10 +71,10 @@ export class TodoItem extends Component {
 }
 
 // PropTypes
-TodoItem.propTypes = {
-  todo: PropTypes.object.isRequired,
+StationItem.propTypes = {
+  station: PropTypes.object.isRequired,
   updateLocation: PropTypes.func.isRequired,
-  delTodo: PropTypes.func.isRequired,
+  delItem: PropTypes.func.isRequired,
   addQuantity: PropTypes.func.isRequired
 }
 
@@ -88,4 +88,4 @@ const btnStyle = {
   float: 'right'
 }
 
-export default TodoItem
+export default StationItem

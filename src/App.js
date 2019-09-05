@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Header from './components/layout/Header.js'
-import Todos from './components/Todos.js';
-import AddTodo from './components/AddTodo.js';
+import Stations from './components/Stations.js';
+import AddComment from './components/AddComment.js';
 import './App.css';
 
 class App extends Component {
 
   state = {
-    todos: [
+    stations: [
       {
         id: 1,
         title: 'Computer',
@@ -58,38 +58,38 @@ class App extends Component {
 
   // Update Item Location
   updateLocation = (id, newLocation) => {
-    this.setState({ todos: this.state.todos.map(todo => {
-      if(todo.id === id) {
-        todo.location = newLocation
-        console.log(todo.title + ': ' + todo.location)
+    this.setState({ stations: this.state.stations.map(station => {
+      if(station.id === id) {
+        station.location = newLocation
+        console.log(station.title + ': ' + station.location)
       }
-      return todo;
+      return station;
     }) });
   }
 
-  // Delete Todo
-  delTodo = (id) => {
-    this.setState({ todos: [...this.state.todos.filter(todo => todo.id !== id)] });
+  // Delete Item
+  delItem = (id) => {
+    this.setState({ stations: [...this.state.stations.filter(station => station.id !== id)] });
   }
 
-  // Add Todo
-  addTodo = (title) => {
-    const newTodo = {
+  // Add Comment
+  addComment = (title) => {
+    const newStation = {
       id: 4,
       title,
       completed: false
     }
-    this.setState({ todos: [...this.state.todos, newTodo] });
+    this.setState({ stations: [...this.state.stations, newStation] });
   }
 
-  // Update Item Quanityt
+  // Update Item Quanity
   addQuantity = (id, newQuantity) => {
-    this.setState({ todos: this.state.todos.map(todo => {
-      if(todo.id === id) {
-        todo.quantity = newQuantity
-        console.log(todo.title + ': ' + todo.quantity)
+    this.setState({ stations: this.state.statios.map(station => {
+      if(station.id === id) {
+        station.quantity = newQuantity
+        console.log(station.title + ': ' + station.quantity)
       }
-      return todo;
+      return station;
     }) });
   }
 
@@ -98,11 +98,11 @@ class App extends Component {
       <div className="App">
         <div className="container">
           <Header />
-          <Todos todos={this.state.todos}
+          <Stations stations={this.state.stations}
           updateLocation={this.updateLocation}
-          delTodo={this.delTodo}
+          delItem={this.delItem}
           addQuantity={this.addQuantity}/>
-          <AddTodo addTodo={this.addTodo}/>
+          <AddComment addComment={this.addComment}/>
         </div>
       </div>
     );
