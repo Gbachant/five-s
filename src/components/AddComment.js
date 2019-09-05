@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Stations from './Stations.js';
 
 export class AddComment extends Component {
   state = {
@@ -18,7 +20,7 @@ export class AddComment extends Component {
       <div>
         <form>
           How many items are in the workspace that shouldn't be there?
-          <input type="number" name="quantity" min="0" max="10"/>
+          <input type="number" name="sort-violations" min="0" max="10"/>
         </form>
         <div className="cleanliness-buttons btn-group btn-group-toggle" data-toggle="buttons">
           <p>How clean is the station?</p>
@@ -57,6 +59,11 @@ export class AddComment extends Component {
       </div>
     )
   }
+}
+
+// PropTypes
+Stations.propTypes = {
+  stations: PropTypes.array.isRequired
 }
 
 export default AddComment

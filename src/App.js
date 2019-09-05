@@ -73,13 +73,12 @@ class App extends Component {
   }
 
   // Add Comment
-  addComment = (title) => {
-    const newStation = {
-      id: 4,
-      title,
-      completed: false
+  addComment = (comment) => {
+    const newComment = {
+      comment: comment
     }
-    this.setState({ stations: [...this.state.stations, newStation] });
+    this.setState({ stations: [...this.state.stations, newComment] });
+    console.log(this)
   }
 
   // Update Item Quanity
