@@ -1,53 +1,39 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import Stations from './Stations.js';
 
 export class AddComment extends Component {
-  state = {
-    title: ''
-  }
+
+  constructor(props) {
+    super(props);
+    this.state = { comment: '' };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+ }
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.addComment(this.state.title);
-    this.setState({title: ''})
+    this.props.addComment(this.state);
+    // this.setState({title: ''})
   }
 
-  onChange = (e) => this.setState({ [e.target.name]: e.target.value });
+  handleChange = event => {
+    this.setState({ comment: event.target.value });
+  };
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  };
 
   render() {
     return (
       <div>
-        <form>
-          How many items are in the workspace that shouldn't be there?
-          <input type="number" name="sort-violations" min="0" max="10"/>
-        </form>
-        <div className="cleanliness-buttons btn-group btn-group-toggle" data-toggle="buttons">
-          <p>How clean is the station?</p>
-          <label className="btn btn-info">
-            <input type="radio" name="options" id="clean-1/5" autoComplete="off"/> 1/5
-          </label>
-          <label className="btn btn-info">
-            <input type="radio" name="options" id="clean-2/5" autoComplete="off"/> 2/5
-          </label>
-          <label className="btn btn-info">
-            <input type="radio" name="options" id="clean-3/5" autoComplete="off"/> 3/5
-          </label>
-          <label className="btn btn-info">
-            <input type="radio" name="options" id="clean-4/5" autoComplete="off"/> 4/5
-          </label>
-          <label className="btn btn-info">
-            <input type="radio" name="options" id="clean-5/5" autoComplete="off"/> 5/5
-          </label>
-        </div>
         <form onSubmit={this.onSubmit} style={{display: 'flex'}}>
           <input
             type="text"
-            name="title"
+            name="comment"
             style={{flex: '10', padding: '5px'}}
             placeholder="Add Comment..."
-            value={this.state.title}
-            onChange={this.onChange}
+            value={this.state.comment}
+            onChange={this.handleChange}
           />
           <input
             type="submit"
@@ -59,11 +45,6 @@ export class AddComment extends Component {
       </div>
     )
   }
-}
-
-// PropTypes
-Stations.propTypes = {
-  stations: PropTypes.array.isRequired
 }
 
 export default AddComment

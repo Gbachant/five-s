@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 
 export class StationItem extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {isToggleOn: true};
+  };
+  
   getStyle = () => {
     return {
       background: '#f4f4f4',

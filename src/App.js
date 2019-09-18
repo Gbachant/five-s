@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/layout/Header.js'
 import Stations from './components/Stations.js';
+import Violations from './components/Violations.js';
 import AddComment from './components/AddComment.js';
 import './App.css';
 
@@ -53,7 +54,9 @@ class App extends Component {
         quantity: '',
         quantityType: 'Boolean'
       }
-    ]
+    ],
+    scores: {
+    }
   }
 
   // Update Item Location
@@ -67,17 +70,27 @@ class App extends Component {
     }) });
   }
 
+  updateScores = (id, violation) => {
+    this.setState({ scores: this.state.scores.map(id => {
+      if(id === id) {
+        id = violation
+        console.log(id)
+      }
+      return id;
+    }) });
+  }
+
   // Delete Item
   delItem = (id) => {
     this.setState({ stations: [...this.state.stations.filter(station => station.id !== id)] });
   }
 
   // Add Comment
-  addComment = (comment) => {
-    const newComment = {
-      comment: comment
-    }
-    this.setState({ stations: [...this.state.stations, newComment] });
+  addComment = (scorecommentarray) => {
+    // const newComment = {
+    //   comment: comment
+    // }
+    this.setState({ scores: [this.state.scores, scorecommentarray] });
     console.log(this)
   }
 
@@ -101,6 +114,7 @@ class App extends Component {
           updateLocation={this.updateLocation}
           delItem={this.delItem}
           addQuantity={this.addQuantity}/>
+          <Violations />
           <AddComment addComment={this.addComment}/>
         </div>
       </div>

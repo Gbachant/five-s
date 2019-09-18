@@ -2,8 +2,8 @@ import React from 'react';
 
 function Header() {
   return (
-    <header style={headerStyle}>
-      <h1>5S Audit</h1>
+    <header>
+      <p>5S App</p>
     </header>
   )
 }
