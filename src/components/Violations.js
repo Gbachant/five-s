@@ -9,15 +9,12 @@ export class Violation extends Component {
      sortViolations: 0
     };
 
-   this.handleClick = this.handleClick.bind(this);
    this.onChange = this.onChange.bind(this);
-
 
  };
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
-    console.log(this);
   };
 
   getStyle = () => {

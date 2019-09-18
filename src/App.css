@@ -23,6 +23,24 @@
   color: #61dafb;
 }
 
+.location-buttons {
+  display: block;
+  overflow: auto;
+}
+
+.boolean-quantity-buttons {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.integer-quantity-buttons {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
