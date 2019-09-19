@@ -5,9 +5,15 @@ export class StationItem extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {isToggleOn: true};
+
+    this.onChange = this.onChange.bind(this);
   };
-  
+
+  onChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value })
+  };
+
   getStyle = () => {
     return {
       background: '#f4f4f4',
@@ -21,34 +27,34 @@ export class StationItem extends Component {
   getQuantityTypeButton(props) {
     if (this.props.station.quantityType === 'Boolean') {
       return <div className="boolean-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
-        <label className="btn btn-info">
+        <button className="btn btn-info" name="quantity" value="Stocked" onClick={this.onChange}>
           <input type="radio" name="options" id="Stocked" autoComplete="off"/> Stocked
-        </label>
-        <label className="btn btn-info">
+        </button>
+        <button className="btn btn-info" name="quantity" value="Empty" onClick={this.onChange}>
           <input type="radio" name="options" id="Empty" autoComplete="off"/> Empty
-        </label>
+        </button>
       </div>;
 
     } if (this.props.station.quantityType === 'Integer') {
       return <div className="integer-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
-        <label className="btn btn-info">
+        <button className="btn btn-info" name="quantity" value="1/5" onClick={this.onChange}>
           <input type="radio" name="options" id="1/5" autoComplete="off"/> 0 - 20%
-        </label>
-        <label className="btn btn-info">
+        </button>
+        <button className="btn btn-info" name="quantity" value="2/5" onClick={this.onChange}>
           <input type="radio" name="options" id="2/5" autoComplete="off"/> 20% - 40%
-        </label>
-        <label className="btn btn-info">
+        </button>
+        <button className="btn btn-info" name="quantity" value="3/5" onClick={this.onChange}>
           <input type="radio" name="options" id="3/5" autoComplete="off"/> 40% - 60%
-        </label>
-        <label className="btn btn-info">
+        </button>
+        <button className="btn btn-info" name="quantity" value="4/5" onClick={this.onChange}>
           <input type="radio" name="options" id="4/5" autoComplete="off"/> 60% - 80%
-        </label>
-        <label className="btn btn-info">
+        </button>
+        <button className="btn btn-info" name="quantity" value="5/5" onClick={this.onChange}>
           <input type="radio" name="options" id="5/5" autoComplete="off"/> 80% - 100%
-        </label>
-        <label className="btn btn-info">
+        </button>
+        <button className="btn btn-info" name="quantity" value="Overstocked" onClick={this.onChange}>
           <input type="radio" name="options" id="overstocked" autoComplete="off"/> Overstocked
-        </label>
+        </button>
       </div>;
     }
   }
@@ -59,15 +65,15 @@ export class StationItem extends Component {
       <div style={this.getStyle()} className="location-buttons btn-group btn-group-toggle" data-toggle="buttons">
         <div>
           <p>{title + "  "}</p>
-          <label onClick={this.props.updateLocation.bind(this, id, 'Present')} className="btn btn-success">
+          <button className="btn btn-success" name="location" value="Present" onClick={this.onChange}>
             <input type="radio" name="options" id="present" autoComplete="off"/> Present
-          </label>
-          <label onClick={this.props.updateLocation.bind(this, id, 'Out of Place')} className="btn btn-warning">
+          </button>
+          <button className="btn btn-warning" name="location" value="Out of Place" onClick={this.onChange}>
             <input type="radio" name="options" id="out-of-place" autoComplete="off"/> Out of Place
-          </label>
-          <label onClick={this.props.updateLocation.bind(this, id, 'Absent')} className="btn btn-danger">
+          </button>
+          <button className="btn btn-danger" name="location" value="Absent" onClick={this.onChange}>
             <input type="radio" name="options" id="absent" autoComplete="off"/> Absent
-          </label>
+          </button>
           <button onClick={this.props.delItem.bind(this, id)}style={btnStyle}>x</button>
           {this.getQuantityTypeButton(this)}
         </div>

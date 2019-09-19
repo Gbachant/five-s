@@ -40,16 +40,16 @@ export class Violation extends Component {
             <input type="radio"  id="clean-1/5" autoComplete="off"/> 1/5
           </button>
           <button className="btn btn-info" name="shineScore" value="2/5" onClick={this.onChange}>
-            <input type="radio" name="shinescore" id="clean-2/5" autoComplete="off"/> 2/5
+            <input type="radio" id="clean-2/5" autoComplete="off"/> 2/5
           </button>
           <button className="btn btn-info" name="shineScore" value="3/5" onClick={this.onChange}>
-            <input type="radio" name="shinescore" id="clean-3/5" autoComplete="off"/> 3/5
+            <input type="radio" id="clean-3/5" autoComplete="off"/> 3/5
           </button>
           <button className="btn btn-info" name="shineScore" value="4/5" onClick={this.onChange}>
-            <input type="radio" name="shinescore" id="clean-4/5" autoComplete="off"/> 4/5
+            <input type="radio" id="clean-4/5" autoComplete="off"/> 4/5
           </button>
           <button className="btn btn-info" name="shineScore" value="5/5" onClick={this.onChange}>
-            <input type="radio" name="shinescore" id="clean-5/5" autoComplete="off"/> 5/5
+            <input type="radio" id="clean-5/5" autoComplete="off"/> 5/5
           </button>
         </div>
       </div>

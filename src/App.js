@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Header from './components/layout/Header.js'
+import Header from './components/layout/Header.js';
+import ChooseAudit from './components/ChooseAudit.js';
 import Stations from './components/Stations.js';
 import Violations from './components/Violations.js';
 import AddComment from './components/AddComment.js';
@@ -108,14 +109,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="container">
-          <Header />
+        <Header />
+        <div id="choose-audit">
+          <ChooseAudit />
+        </div>
+        <div className="container" id="station-audit">
           <Stations stations={this.state.stations}
           updateLocation={this.updateLocation}
           delItem={this.delItem}
           addQuantity={this.addQuantity}/>
           <Violations />
           <AddComment addComment={this.addComment}/>
+        </div>
+        <div id="department-audit">
         </div>
       </div>
     );
