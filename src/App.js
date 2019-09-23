@@ -4,6 +4,7 @@ import ChooseAudit from './components/ChooseAudit.js';
 import Stations from './components/Stations.js';
 import Violations from './components/Violations.js';
 import AddComment from './components/AddComment.js';
+import Confirm from './components/layout/Confirm.js';
 import './App.css';
 
 class App extends Component {
@@ -123,6 +124,7 @@ class App extends Component {
         </div>
         <div id="department-audit">
         </div>
+        <Confirm />
       </div>
     );
   }

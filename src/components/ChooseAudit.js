@@ -11,22 +11,35 @@ export class ChooseAudit extends Component {
         {
           title: 'Receiving',
           stations: ['R1'],
-          stationItems: ['label printer', 'red tape']
+          stationItems: [
+            'Computer', 'Label Printer', 'Red Tape'
+          ]
         },
         {
           title: 'Order Verification',
           stations: ['OV1', 'OV2'],
-          stationItems: ['label printer', 'red tape']
+          stationItems: [
+            'Computer', 'Label Printer', 'FLO Kit', 'Calipers', 'Red Tape'
+          ]
         },
         {
           title: 'Product Verification',
           stations: ['PV1', 'PV2', 'PV3', 'PV4', 'PV5', 'PV6'],
-          stationItems: ['label printer', 'red tape']
+          stationItems: [
+            'Computer', 'Label Printer', 'Abutment Case Bin',
+            'Abutment Lid Bin', 'AIG Case Bin', 'AIG Lid Bin', 'Screwdrivers',
+            'Plastic Bag Bin'
+          ]
         },
         {
           title: 'Shipping',
           stations: ['S1', 'S2', 'S3', 'S4'],
-          stationItems: ['label printer', 'red tape']
+          stationItems: [
+            'Computer', 'Printer', 'Label Printer', 'Stapler', 'Bubble Wrap',
+            'Tape Machine', 'FedEx Envelope Bin', 'UPS Envelope Bin',
+            'Standard Stamp Bin', 'Priority Stamp Bin',
+            'International Stamp Bin', 'ICC Bin'
+          ]
         }
       ],
       auditDepartments: [
@@ -49,14 +62,16 @@ export class ChooseAudit extends Component {
         <div key={index}>
           <h3>{station.title}</h3>
           {station.stations.map((c, i) => (
-            <div key={i}>
-              <button>{c}</button>
-            </div>
+            <button className="btn btn-info">{c}</button>
           ))}
         </div>
       ))
     )
   }
+
+  // selectStation (e) => {
+  //
+  // }
 
   render() {
     return (
