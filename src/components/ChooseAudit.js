@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import StationItem from './StationItem';
+import PropTypes from 'prop-types';
 
 export class ChooseAudit extends Component {
 
@@ -56,22 +58,44 @@ export class ChooseAudit extends Component {
     // this.setState({title: ''})
   }
 
+  selectStation = (e) => {
+    e.preventDefault();
+    this.setState({selectedStation: e.target.value})
+  }
+
   getStationButtons() {
     return(
       this.state.departments.map((station, index) => (
         <div key={index}>
           <h3>{station.title}</h3>
           {station.stations.map((c, i) => (
-            <button className="btn btn-info">{c}</button>
+            <button className="btn btn-info" onClick={this.selectStation} value={c}>{c}</button>
           ))}
         </div>
       ))
     )
   }
 
-  // selectStation (e) => {
-  //
-  // }
+  renderStationItems() {
+    for (let i=0; i < this.state.departments.length; i++) {
+      for (let j=0; j < this.state.departments[i].stations.length; j++) {
+        if (this.state.departments[i].stations[j] === this.state.selectedStation) {
+          var activeItems = []
+          for (let k=0; k < this.props.station.length; k++) {
+            if (this.state.departments[i].stationItems.includes(this.props.station[k].title)) {
+              activeItems.push(this.props.station[k])
+            }
+          }
+          return activeItems.map((station) => (
+            <StationItem
+            station={station}
+            updateLocation={this.props.updateLocation}
+            addQuantity={this.props.addQuantity} />
+          ));
+        }
+      };
+    };
+  }
 
   render() {
     return (
@@ -85,6 +109,7 @@ export class ChooseAudit extends Component {
             <h1>Department Audit</h1>
           </div>
         </div>
+        {this.renderStationItems()}
       </div>
     )
   }

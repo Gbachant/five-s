@@ -26,7 +26,7 @@ export class StationItem extends Component {
 
   getQuantityTypeButton(props) {
     if (this.props.station.quantityType === 'Boolean') {
-      return <div className="boolean-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
+      return <div className="boolean-quantity-buttons" data-toggle="buttons">
         <button className="btn btn-info" name="quantity" value="Stocked" onClick={this.onChange}>
           <input type="radio" name="options" id="Stocked" autoComplete="off"/> Stocked
         </button>
@@ -36,7 +36,7 @@ export class StationItem extends Component {
       </div>;
 
     } if (this.props.station.quantityType === 'Integer') {
-      return <div className="integer-quantity-buttons btn-group btn-group-toggle" data-toggle="buttons">
+      return <div className="integer-quantity-buttons" data-toggle="buttons">
         <button className="btn btn-info" name="quantity" value="1/5" onClick={this.onChange}>
           <input type="radio" name="options" id="1/5" autoComplete="off"/> 0 - 20%
         </button>
@@ -74,7 +74,6 @@ export class StationItem extends Component {
           <button className="btn btn-danger" name="location" value="Absent" onClick={this.onChange}>
             <input type="radio" name="options" id="absent" autoComplete="off"/> Absent
           </button>
-          <button onClick={this.props.delItem.bind(this, id)}style={btnStyle}>x</button>
           {this.getQuantityTypeButton(this)}
         </div>
       </div>

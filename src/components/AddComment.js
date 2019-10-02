@@ -6,14 +6,7 @@ export class AddComment extends Component {
     super(props);
     this.state = { comment: '' };
     this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
  }
-
-  onSubmit = (e) => {
-    e.preventDefault();
-    this.props.addComment(this.state);
-    // this.setState({title: ''})
-  }
 
   handleChange = event => {
     this.setState({ comment: event.target.value });
@@ -34,12 +27,6 @@ export class AddComment extends Component {
             placeholder="Add Comment..."
             value={this.state.comment}
             onChange={this.handleChange}
-          />
-          <input
-            type="submit"
-            value="Submit"
-            className="btn btn-primary"
-            style={{flex: '1'}}
           />
         </form>
       </div>

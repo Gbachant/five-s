@@ -55,6 +55,141 @@ class App extends Component {
         location: '',
         quantity: '',
         quantityType: 'Boolean'
+      },
+      {
+        id: 6,
+        title: 'Abutment Case Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 7,
+        title: 'Abutment Lid Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 8,
+        title: 'AIG Case Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 9,
+        title: 'AIG Lid Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 10,
+        title: 'Screwdrivers',
+        objectType: 'Tool',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 11,
+        title: 'Plastic Bag Gin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 12,
+        title: 'Stapler',
+        objectType: 'Tool',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Boolean'
+      },
+      {
+        id: 13,
+        title: 'Bubble Wrap',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Boolean'
+      },
+      {
+        id: 14,
+        title: 'Tape Machine',
+        objectType: 'Tool',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Boolean'
+      },
+      {
+        id: 15,
+        title: 'FedEx Envelope Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 16,
+        title: 'UPS Envelope Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 17,
+        title: 'Standard Stamp Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 18,
+        title: 'Priority Stamp Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 19,
+        title: 'International Stamp Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
+      },
+      {
+        id: 20,
+        title: 'ICC Bin',
+        objectType: 'Product',
+        completed: false,
+        location: '',
+        quantity: '',
+        quantityType: 'Integer'
       }
     ],
     scores: {
@@ -98,7 +233,7 @@ class App extends Component {
 
   // Update Item Quanity
   addQuantity = (id, newQuantity) => {
-    this.setState({ stations: this.state.statios.map(station => {
+    this.setState({ stations: this.state.stations.map(station => {
       if(station.id === id) {
         station.quantity = newQuantity
         console.log(station.title + ': ' + station.quantity)
@@ -112,13 +247,9 @@ class App extends Component {
       <div className="App">
         <Header />
         <div id="choose-audit">
-          <ChooseAudit />
+          <ChooseAudit station={this.state.stations}/>
         </div>
         <div className="container" id="station-audit">
-          <Stations stations={this.state.stations}
-          updateLocation={this.updateLocation}
-          delItem={this.delItem}
-          addQuantity={this.addQuantity}/>
           <Violations />
           <AddComment addComment={this.addComment}/>
         </div>
