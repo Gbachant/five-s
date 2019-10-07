@@ -103,7 +103,7 @@ class App extends Component {
       },
       {
         id: 11,
-        title: 'Plastic Bag Gin',
+        title: 'Plastic Bag Bin',
         objectType: 'Product',
         completed: false,
         location: '',
@@ -197,11 +197,11 @@ class App extends Component {
   }
 
   // Update Item Location
-  updateLocation = (id, newLocation) => {
+  updateItem = (title, itemProp, newValue) => {
+    console.log(itemProp)
     this.setState({ stations: this.state.stations.map(station => {
-      if(station.id === id) {
-        station.location = newLocation
-        console.log(station.title + ': ' + station.location)
+      if(station.title === title) {
+        station[itemProp] = newValue
       }
       return station;
     }) });
@@ -231,23 +231,15 @@ class App extends Component {
     console.log(this)
   }
 
-  // Update Item Quanity
-  addQuantity = (id, newQuantity) => {
-    this.setState({ stations: this.state.stations.map(station => {
-      if(station.id === id) {
-        station.quantity = newQuantity
-        console.log(station.title + ': ' + station.quantity)
-      }
-      return station;
-    }) });
-  }
-
   render() {
     return (
       <div className="App">
         <Header />
         <div id="choose-audit">
-          <ChooseAudit station={this.state.stations}/>
+          <ChooseAudit station={this.state.stations}
+          updateItem={this.updateItem}
+          addQuantity={this.addQuantity}
+          updateLocation={this.updateLocation}/>
         </div>
         <div className="container" id="station-audit">
           <Violations />

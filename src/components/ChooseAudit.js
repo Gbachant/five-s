@@ -89,6 +89,7 @@ export class ChooseAudit extends Component {
           return activeItems.map((station) => (
             <StationItem
             station={station}
+            updateItem={this.props.updateItem}
             updateLocation={this.props.updateLocation}
             addQuantity={this.props.addQuantity} />
           ));
