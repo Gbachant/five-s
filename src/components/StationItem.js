@@ -76,6 +76,7 @@ export class StationItem extends Component {
             <input type="radio" name="options" id="absent" autoComplete="off"/> Absent
           </button>
           {this.getQuantityTypeButton(this)}
+          {console.log(title)}
         </div>
       </div>
     )

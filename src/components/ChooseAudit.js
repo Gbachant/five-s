@@ -107,7 +107,7 @@ export class ChooseAudit extends Component {
             {this.getStationButtons()}
           </div>
           <div className="col">
-            <h1>Department Audit</h1>
+          <br/>
           </div>
         </div>
         {this.renderStationItems()}

@@ -207,15 +207,25 @@ class App extends Component {
     }) });
   }
 
-  updateScores = (id, violation) => {
-    this.setState({ scores: this.state.scores.map(id => {
-      if(id === id) {
-        id = violation
-        console.log(id)
-      }
-      return id;
-    }) });
-  }
+  // updateScores = (id, violation) => {
+  //   this.setState({ station: this.state.scores.map(id => {
+  //     if(id === id) {
+  //       id = violation
+  //       console.log(id)
+  //     }
+  //     return id;
+  //   }) });
+  // }
+
+  // updateScores = (violation, score) => {
+  //   let foo = violation
+  //   this.setState({foo: score})
+  // }
+
+  onChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value })
+  };
+
 
   // Delete Item
   delItem = (id) => {
@@ -223,13 +233,18 @@ class App extends Component {
   }
 
   // Add Comment
-  addComment = (scorecommentarray) => {
-    // const newComment = {
-    //   comment: comment
-    // }
-    this.setState({ scores: [this.state.scores, scorecommentarray] });
-    console.log(this)
+  updateScores = (score, value) => {
+    this.setState({
+      scores: {
+        [score]: value
+      }
+    });
   }
+
+  // Get Sort Score
+  // getSortScore = () => {
+  //
+  // }
 
   render() {
     return (
@@ -242,7 +257,9 @@ class App extends Component {
           updateLocation={this.updateLocation}/>
         </div>
         <div className="container" id="station-audit">
-          <Violations />
+          <Violations updateScores={this.updateScores}
+          onChange={this.onChange}
+          />
           <AddComment addComment={this.addComment}/>
         </div>
         <div id="department-audit">
