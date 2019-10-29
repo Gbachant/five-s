@@ -5,8 +5,8 @@ export class StationItem extends Component {
 
   constructor(props) {
     super(props);
-
     this.onChange = this.onChange.bind(this);
+    this.getQuantityTypeButton = this.getQuantityTypeButton.bind(this);
   };
 
   onChange = (e) => {
@@ -25,7 +25,7 @@ export class StationItem extends Component {
   }
 
   getQuantityTypeButton(props) {
-    const {id, title} = this.props.station
+    const {title} = this.props.station
     if (this.props.station.quantityType === 'Boolean') {
       return <div className="boolean-quantity-buttons" data-toggle="buttons">
         <button className="btn btn-info" name="quantity" value="Stocked" onClick={() => { this.props.updateItem(title, 'quantity', 'Stocked')}}>
@@ -63,10 +63,10 @@ export class StationItem extends Component {
   render() {
     const {id, title} = this.props.station
     return (
-      <div style={this.getStyle()} className="location-buttons btn-group btn-group-toggle" data-toggle="buttons">
+      <div style={this.getStyle()} className="location-buttons btn-group btn-group-toggle" data-toggle="buttons" onChange={this.props.getSetScore(this.props.activeItems)}>
         <div>
           <p>{title + "  "}</p>
-          <button className="btn btn-success" name="location" value="Present" onClick={() => { this.props.updateItem(title, 'location', 'Present')}}>
+          <button className="btn btn-success" name="location" value="Present" onClick={() => {this.props.updateItem(title, 'location', 'Present')}}>
             <input type="radio" name="options" id="present" autoComplete="off"/> Present
           </button>
           <button className="btn btn-warning" name="location" value="Out of Place" onClick={() => {this.props.updateItem(title, 'location', 'Out of Place')}}>
@@ -76,7 +76,6 @@ export class StationItem extends Component {
             <input type="radio" name="options" id="absent" autoComplete="off"/> Absent
           </button>
           {this.getQuantityTypeButton(this)}
-          {console.log(title)}
         </div>
       </div>
     )

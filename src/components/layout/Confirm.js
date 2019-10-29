@@ -2,15 +2,11 @@ import React, { Component } from 'react';
 
 export class Confirm extends Component {
 
-  constructor(props) {
-    super(props);
- }
-
   render() {
     return (
       <div>
         <button className="btn btn-danger">Exit</button>
-        <button className="btn btn-success">Submit</button>
+        <button className="btn btn-success" onClick={this.props.getSortScore}>Submit</button>
       </div>
     )
   }

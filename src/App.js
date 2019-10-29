@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/layout/Header.js';
 import ChooseAudit from './components/ChooseAudit.js';
-import Stations from './components/Stations.js';
 import Violations from './components/Violations.js';
 import AddComment from './components/AddComment.js';
 import Confirm from './components/layout/Confirm.js';
@@ -192,13 +191,19 @@ class App extends Component {
         quantityType: 'Integer'
       }
     ],
+    activeItems: [],
     scores: {
-    }
+      sortScore: '',
+      setScore: '',
+      shineScore: '',
+      standardizeScore: '',
+      sustainScore: ''
+    },
+    comment: ''
   }
 
   // Update Item Location
   updateItem = (title, itemProp, newValue) => {
-    console.log(itemProp)
     this.setState({ stations: this.state.stations.map(station => {
       if(station.title === title) {
         station[itemProp] = newValue
@@ -206,21 +211,6 @@ class App extends Component {
       return station;
     }) });
   }
-
-  // updateScores = (id, violation) => {
-  //   this.setState({ station: this.state.scores.map(id => {
-  //     if(id === id) {
-  //       id = violation
-  //       console.log(id)
-  //     }
-  //     return id;
-  //   }) });
-  // }
-
-  // updateScores = (violation, score) => {
-  //   let foo = violation
-  //   this.setState({foo: score})
-  // }
 
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
@@ -232,19 +222,47 @@ class App extends Component {
     this.setState({ stations: [...this.state.stations.filter(station => station.id !== id)] });
   }
 
-  // Add Comment
-  updateScores = (score, value) => {
-    this.setState({
-      scores: {
-        [score]: value
-      }
-    });
+  // Update Scores
+  updateScores = (value, score) => {
+    this.setState({ scores: { ...this.state.scores, [value]: score} });
+
   }
 
-  // Get Sort Score
-  // getSortScore = () => {
-  //
+  handleChange = (e) => {
+    this.setState({ comment: e.target.value });
+  };
+
+  // getActiveItems = (activeItemArray) => {
+  //   // this.setState({activeItems: [activeItemArray]})
+  //   console.log(activeItemArray)
+  //   {console.log(React.Child.count(this.props.children))}
   // }
+
+  // Get Set Score
+  getSetScore = (activeItemArray) => {
+    function hasLocation(stationItem){
+      return stationItem.location
+    }
+    let grossSetScore
+
+    if (activeItemArray.every(hasLocation)) {
+      grossSetScore = 0
+      for (let i=0; i < activeItemArray.length; i++) {
+        switch (activeItemArray[i].location) {
+          case 'Present':
+            grossSetScore += 100;
+            break;
+          case 'Out of Place':
+            grossSetScore += 50;
+            break;
+          }
+        }
+      }
+      if (grossSetScore || grossSetScore === 0) {
+        let setScore = grossSetScore / activeItemArray.length
+        console.log(setScore)
+      }
+  }
 
   render() {
     return (
@@ -254,17 +272,24 @@ class App extends Component {
           <ChooseAudit station={this.state.stations}
           updateItem={this.updateItem}
           addQuantity={this.addQuantity}
-          updateLocation={this.updateLocation}/>
+          updateLocation={this.updateLocation}
+          getSetScore={this.getSetScore}
+          />
         </div>
         <div className="container" id="station-audit">
           <Violations updateScores={this.updateScores}
           onChange={this.onChange}
           />
-          <AddComment addComment={this.addComment}/>
+          <AddComment addComment={this.addComment}
+          handleChange={this.handleChange}
+          comment={this.state.comment}
+          />
         </div>
         <div id="department-audit">
         </div>
-        <Confirm />
+        <Confirm
+        getSortScore={this.getSortScore}
+        />
       </div>
     );
   }

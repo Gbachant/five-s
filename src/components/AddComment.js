@@ -4,7 +4,7 @@ export class AddComment extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { comment: '' };
+    this.handleChange = this.handleChange.bind(this);
     this.onChange = this.onChange.bind(this);
  }
 
@@ -25,8 +25,8 @@ export class AddComment extends Component {
             name="comment"
             style={{flex: '10', padding: '5px'}}
             placeholder="Add Comment..."
-            value={this.state.comment}
-            onChange={this.handleChange}
+            value={this.props.comment}
+            onChange={this.props.handleChange}
           />
         </form>
       </div>

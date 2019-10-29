@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import StationItem from './StationItem';
-import PropTypes from 'prop-types';
 
 export class ChooseAudit extends Component {
 
   constructor(props) {
     super(props);
     this.getStationButtons = this.getStationButtons.bind(this);
+    this.renderStationItems = this.renderStationItems.bind(this);
 
     this.state = {
       departments: [
@@ -47,7 +47,8 @@ export class ChooseAudit extends Component {
       auditDepartments: [
         'Receiving and Order Verification',
         'Product Verification and Shipping'
-      ]
+      ],
+      activeItems: []
      };
 
  }
@@ -80,7 +81,7 @@ export class ChooseAudit extends Component {
     for (let i=0; i < this.state.departments.length; i++) {
       for (let j=0; j < this.state.departments[i].stations.length; j++) {
         if (this.state.departments[i].stations[j] === this.state.selectedStation) {
-          var activeItems = []
+          let activeItems = []
           for (let k=0; k < this.props.station.length; k++) {
             if (this.state.departments[i].stationItems.includes(this.props.station[k].title)) {
               activeItems.push(this.props.station[k])
@@ -91,12 +92,17 @@ export class ChooseAudit extends Component {
             station={station}
             updateItem={this.props.updateItem}
             updateLocation={this.props.updateLocation}
-            addQuantity={this.props.addQuantity} />
+            addQuantity={this.props.addQuantity}
+            activeItems={activeItems}
+            getSetScore={this.props.getSetScore}
+            />
           ));
         }
       };
     };
   }
+
+
 
   render() {
     return (
