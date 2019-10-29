@@ -94,7 +94,7 @@ export class ChooseAudit extends Component {
             updateLocation={this.props.updateLocation}
             addQuantity={this.props.addQuantity}
             activeItems={activeItems}
-            getSetScore={this.props.getSetScore}
+            getSetStandardizeScore={this.props.getSetStandardizeScore}
             />
           ));
         }
@@ -116,7 +116,9 @@ export class ChooseAudit extends Component {
           <br/>
           </div>
         </div>
-        {this.renderStationItems()}
+        <div>
+          {this.renderStationItems()}
+        </div>
       </div>
     )
   }

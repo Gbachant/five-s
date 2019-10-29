@@ -63,7 +63,7 @@ export class StationItem extends Component {
   render() {
     const {id, title} = this.props.station
     return (
-      <div style={this.getStyle()} className="location-buttons btn-group btn-group-toggle" data-toggle="buttons" onChange={this.props.getSetScore(this.props.activeItems)}>
+      <div style={this.getStyle()} className="location-buttons btn-group btn-group-toggle" data-toggle="buttons" onChange={this.props.getSetStandardizeScore(this.props.activeItems)}>
         <div>
           <p>{title + "  "}</p>
           <button className="btn btn-success" name="location" value="Present" onClick={() => {this.props.updateItem(title, 'location', 'Present')}}>

@@ -264,6 +264,52 @@ class App extends Component {
       }
   }
 
+  // Get Standardize Scores
+  getStandardizeScore = (activeItemArray) => {
+    function hasQuantity(stationItem) {
+      if (stationItem.quantity || stationItem.quantityType == 'N/A') {
+        return true
+      } else {
+        return false
+      }
+    }
+    let grossStandardizeScore
+
+    if (activeItemArray.every(hasQuantity)) {
+      grossStandardizeScore = 0
+      for (let i=0; i < activeItemArray.length; i++) {
+        if (activeItemArray[i].quantityType != 'N/A') {
+          switch (activeItemArray[i].quantity) {
+            case 'Stocked' || '5/5':
+              grossStandardizeScore += 100;
+              break;
+            case '4/5' || 'Overstocked':
+              grossStandardizeScore += 80;
+              break;
+            case '3/5':
+              grossStandardizeScore += 60;
+              break;
+            case '2/5':
+              grossStandardizeScore += 40;
+              break;
+            case '1/5':
+              grossStandardizeScore += 20;
+              break;
+          }
+        }
+      }
+    }
+    if (grossStandardizeScore || grossStandardizeScore === 0) {
+      let standardizeScore = grossStandardizeScore / activeItemArray.length
+      console.log(standardizeScore)
+    }
+  }
+
+  getSetStandardizeScore = (activeItemArray) => {
+    this.getSetScore(activeItemArray)
+    this.getStandardizeScore(activeItemArray)
+  }
+
   render() {
     return (
       <div className="App">
@@ -273,7 +319,7 @@ class App extends Component {
           updateItem={this.updateItem}
           addQuantity={this.addQuantity}
           updateLocation={this.updateLocation}
-          getSetScore={this.getSetScore}
+          getSetStandardizeScore={this.getSetStandardizeScore}
           />
         </div>
         <div className="container" id="station-audit">
@@ -288,7 +334,6 @@ class App extends Component {
         <div id="department-audit">
         </div>
         <Confirm
-        getSortScore={this.getSortScore}
         />
       </div>
     );

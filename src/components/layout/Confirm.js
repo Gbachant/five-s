@@ -6,7 +6,7 @@ export class Confirm extends Component {
     return (
       <div>
         <button className="btn btn-danger">Exit</button>
-        <button className="btn btn-success" onClick={this.props.getSortScore}>Submit</button>
+        <button className="btn btn-success">Submit</button>
       </div>
     )
   }
